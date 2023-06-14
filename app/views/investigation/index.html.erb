@@ -1,0 +1,51 @@
+<div id="wrapper">
+      <div class="row　g-0">
+        <!-- サイドバー -->
+        <div id="sidebar">
+          <div class="vh-100 d-flex flex-column p-3 text-white bg-dark" style="width: 280px; height: 100%;">
+            <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+              <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
+              <span class="fs-4">Osint App</span>
+            </a>
+            <hr>
+            <ul class="nav nav-pills flex-column mb-auto">
+              <li class="nav-item">
+                <a href="/cves/index" class="nav-link text-white" id="link1" aria-current="page" data-turbo-action="replace" data-turbo-frame="main-content">
+                  <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"></use></svg>
+                  定常業務
+                </a>
+
+              </li>
+              <li>
+                <a href="investigation/index" class="nav-link active text-white" id="link2" data-turbo-action="replace" data-turbo-frame="main-content">
+                  <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
+                  インシデント調査
+                </a>
+              </li>
+            </ul>
+            <hr>
+          </div>
+        </div>
+
+        </div>
+        <!-- メインコンテンツ -->
+    　<div class="me-1" id="main-content">
+    　   <div class="card text-center">
+          <div class="card-header">
+            IPaddress
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">Search For IPaddress</h5>
+            <%= form_tag(investigation_show_path, method: :get) do %>
+              <p class="card-text">
+                <%= label_tag :ip, "IP Address:" %>
+                <%= text_field_tag :ip, params[:ip] %>
+              </p>
+              <%= submit_tag "Search", class: "btn btn-primary" %>
+            <% end %>
+          </div>
+          <div class="card-footer text-muted">
+          </div>
+        </div>
+      </div>
+    </div>

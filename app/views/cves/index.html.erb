@@ -1,0 +1,75 @@
+<div id="wrapper">
+  <div class="row g-0">
+    <!-- サイドバー -->
+    <div id="sidebar">
+      <div class="vh-100 d-flex flex-column p-3 text-white bg-dark" style="width: 280px; height: 100%;">
+        <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+          <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
+          <span class="fs-4">Osint App</span>
+        </a>
+        <hr>
+        <ul class="nav nav-pills flex-column mb-auto">
+          <li class="nav-item">
+            <a href="/cves/index" class="nav-link active text-white" id="link1" aria-current="page" data-turbo-action="replace" data-turbo-frame="main-content">
+              <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"></use></svg>
+              定常業務
+            </a>
+          </li>
+          <li>
+            <a href="/investigation/index" class="nav-link text-white" id="link2" data-turbo-action="replace" data-turbo-frame="main-content">
+              <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
+              インシデント調査
+            </a>
+          </li>
+        </ul>
+        <hr>
+      </div>
+    </div>
+
+    <!-- メインコンテンツ -->
+    <div class="me-1" id="main-content">
+      <table class="table table-dark table-hover">
+        <thead>
+          <tr>
+            <th style="width: 200px;">CVE ID</th>
+            <th>CVSS</th>
+            <th>公開日</th>
+            <th>最終更新日</th>
+            <th>脆弱性ステータス</th>
+            <th>説明</th>
+            <th>弱点</th>
+            <th>構成</th>
+            <th>ソース識別子</th>
+            <th>参考文献</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @cves.each do |cve| %>
+            <tr>
+              <td><%= cve[:cve_id] %></td>
+              <td class="<%= score_color(cve[:cvss_v31_base_score]) %>"><%= cve[:cvss_v31_base_score] %></td>
+              <td><%= cve[:published].to_time.strftime('%Y/%m/%d') %></td>
+              <td><%= cve[:last_modified].to_time.strftime('%Y/%m/%d') %></td>
+              <td><%= cve[:vuln_status] %></td>
+              <td>
+                <button class="toggle-details btn btn-primary" data-id="<%= cve[:cve_id] %>">Show Details</button>
+                <div class="description-details" id="<%= cve[:cve_id] %>" style="display: none;"><%= cve[:description] %></div>
+                <button class="back-button btn btn-danger" style="display: none;">Back</button>
+              </td>
+              <td><%= cve[:weakness] %></td>
+              <td><%= cve[:configuration] %></td>
+              <td><%= cve[:source_identifier] %></td>
+              <td>
+                <ul>
+                  <% cve[:reference_urls]&.each do |ref| %>
+                    <li><a href="<%= ref %>"><%= ref %></a></li>
+                  <% end %>
+                </ul>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

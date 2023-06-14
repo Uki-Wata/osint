@@ -1,0 +1,43 @@
+#wrapper {
+  display: flex; /* This makes the wrapper use a flex layout */
+}
+
+#sidebar {
+  position: fixed;
+  width: 280px; /* Adjust this to change the width of your sidebar */
+  height: 100vh;
+  overflow-y: auto;
+}
+
+#main-content {
+  margin-left: 280px; /* Adjust this to match the width of your sidebar */
+  width: calc(100% - 280px); /* This will calculate the remaining width */
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.mx-0 {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.none {
+  color: #000000; /* None の色 */
+}
+
+.low {
+  color: #00ff00; /* Low の色 */
+}
+
+.medium {
+  color: #ffff00; /* Medium の色 */
+}
+
+.high {
+  color: #ff9900; /* High の色 */
+}
+
+.critical {
+  color: #ff0000; /* Critical の色 */
+}
+
