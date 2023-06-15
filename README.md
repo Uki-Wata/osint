@@ -21,4 +21,8 @@ Things you may want to cover:
 
 * Deployment instructions
 
-* ...
+```
+rails new osint 
+cd osint/
+bundle install
+```
