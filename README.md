@@ -25,4 +25,5 @@ Things you may want to cover:
 rails new osint 
 cd osint/
 bundle install
+rails s
 ```
